@@ -5,6 +5,10 @@ export const DAYS_IN_A_WEEK = 7;
 export const MONTH_FORMAT = 'yyyy-MM';
 export const DATE_FORMAT = 'yyyy-MM-dd';
 
+const SATURDAY_NUMBER = 7;
+const SUNDAY_NUMBER = 1;
+const weekendNumbers = Object.freeze([SATURDAY_NUMBER, SUNDAY_NUMBER]);
+
 /**
  * Convert the ISO week number to local week number.
  * That will make the week start from Sunday.
@@ -73,9 +77,15 @@ export function getMonthlyCalendarGrid(dateString) {
   const start = calendarInterval.start;
   return Array(totalDays)
     .fill(null)
-    .map((_, startOffset) =>
-      start.plus({ days: startOffset }).toFormat(DATE_FORMAT)
-    );
+    .map((_, startOffset) => {
+      const date = start.plus({ days: startOffset });
+      return {
+        key: date.toFormat(DATE_FORMAT),
+        text: date.toLocaleString({ locale: APP_LOCALE, day: 'numeric' }),
+        trailing: !month.hasSame(date, 'month'),
+        isWeekend: weekendNumbers.includes(toLocalWeekdayNumber(date.weekday)),
+      };
+    });
 }
 
 /**

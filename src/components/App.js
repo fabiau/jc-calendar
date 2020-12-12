@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+import { DateTime } from 'luxon';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setMonth } from '../actions/month';
 import AppHeader from './AppHeader';
 import MonthlyCalendar from './calendar/MonthlyCalendar';
 
@@ -7,22 +10,36 @@ function setNavigationBarHeightCSSVariable() {
   document.documentElement.style.setProperty('--vh', vh + 'px');
 }
 
-function App() {
-  useEffect(() => {
+class App extends Component {
+  componentDidMount() {
     window.addEventListener('resize', setNavigationBarHeightCSSVariable);
-    return () => {
-      window.removeEventListener('resize', setNavigationBarHeightCSSVariable);
-    };
-  }, []);
 
-  return (
-    <div className="h-screen-nav-fix w-screen font-montserrat overflow-hidden bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50">
-      <div className="w-full h-full flex flex-col">
-        <AppHeader />
-        <MonthlyCalendar />
+    if (this.props.month === null) {
+      this.props.dispatch(setMonth(DateTime.local().toFormat('yyyy-MM')));
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', setNavigationBarHeightCSSVariable);
+  }
+
+  render() {
+    return (
+      <div className="h-screen-nav-fix w-screen font-montserrat overflow-hidden bg-gray-50 text-gray-900">
+        <div className="w-full h-full flex flex-col">
+          <AppHeader />
+          {this.props.month && <MonthlyCalendar />}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state, props) {
+  return {
+    ...props,
+    month: state.month,
+  };
+}
+
+export default connect(mapStateToProps)(App);
