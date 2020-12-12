@@ -89,9 +89,13 @@ export function getMonthlyCalendarGrid(dateString) {
 }
 
 /**
- * Returns a monthly key for a given date (format: `yyyy-MM`).
- * @param {DateTime} date The date to get the key from.
+ * Returns a localized formatted month and year string.
+ * @param {string} monthString The month to get the key from.
  */
-export function getMonthKeyFor(date) {
-  return date.toFormat(MONTH_FORMAT);
+export function getDisplayMonthAndYear(monthString) {
+  return DateTime.fromFormat(monthString, MONTH_FORMAT).toLocaleString({
+    locale: APP_LOCALE,
+    year: 'numeric',
+    month: 'long',
+  });
 }

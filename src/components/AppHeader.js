@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getDisplayMonthAndYear } from '../selectors/month';
 import PlusIcon from './icons/PlusIcon';
 
-function AppHeader() {
+function AppHeader({ month }) {
   return (
     <div className="flex px-8 py-4 flex-row gap-4 flex-nowrap shadow-lg items-center">
       <div className="w-64">
@@ -14,13 +16,17 @@ function AppHeader() {
         </button>
       </div>
 
-      <h1 className="flex-grow text-center text-2xl font-medium">
-        December 2020
-      </h1>
+      <h1 className="flex-grow text-center text-2xl font-medium">{month}</h1>
 
       <div className="w-64" />
     </div>
   );
 }
 
-export default AppHeader;
+function mapStateToProps(state) {
+  return {
+    month: getDisplayMonthAndYear(state),
+  };
+}
+
+export default connect(mapStateToProps)(AppHeader);

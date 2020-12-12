@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  getMonthlyCalendarGrid,
-  getWeekdaysDescriptions,
-} from '../../helpers/calendar';
+import { getWeekdaysDescriptions } from '../../helpers/calendar';
 import MonthlyCalendarHeader from './MonthlyCalendarHeader';
 import MonthlyCalendarGrid from './MonthlyCalendarGrid';
 import { connect } from 'react-redux';
+import { getMonthlyCalendarGrid } from '../../selectors/calendar';
 
 // As the user can't change the locale, keep this 'cached'.
 const weekDays = getWeekdaysDescriptions();
@@ -20,12 +18,7 @@ function MonthlyCalendar({ dates }) {
 }
 
 function mapStateToProps(state, props) {
-  const dates = getMonthlyCalendarGrid(state.month).map((date) => {
-    return {
-      ...date,
-      reminders: [],
-    };
-  });
+  const dates = getMonthlyCalendarGrid(state);
 
   return {
     ...props,
