@@ -3,7 +3,7 @@ import { getWeekdaysDescriptions } from '../../helpers/calendar';
 import MonthlyCalendarHeader from './MonthlyCalendarHeader';
 import MonthlyCalendarGrid from './MonthlyCalendarGrid';
 import { connect } from 'react-redux';
-import { getMonthlyCalendarGrid } from '../../selectors/calendar';
+import { getMonthlyCalendarGrid } from '../../selectors/ui/calendar';
 
 // As the user can't change the locale, keep this 'cached'.
 const weekDays = getWeekdaysDescriptions();

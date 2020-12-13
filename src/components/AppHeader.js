@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getDisplayMonthAndYear } from '../selectors/month';
+import { bindActionCreators } from 'redux';
+import { newReminder } from '../actions/ui/reminder';
+import { getDisplayMonthAndYear } from '../selectors/ui/month';
 import PlusIcon from './icons/PlusIcon';
 
-function AppHeader({ month }) {
+function AppHeader({ month, newReminder }) {
   return (
     <div className="flex px-8 py-4 flex-row gap-4 flex-nowrap shadow-lg items-center">
       <div className="w-64">
         <button
+          onClick={newReminder}
           type="button"
           className="uppercase flex flex-row flex-nowrap items-center gap-2 p-3 lg:px-4 lg:py-2 shadow rounded-full lg:rounded text-lg font-medium bg-white hover:bg-gray-200 text-indigo-700 hover:text-indigo-900 transition-colors duration-150"
         >
@@ -29,4 +32,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AppHeader);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ newReminder }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppHeader);

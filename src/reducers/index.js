@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import month from './month';
+import ui from './ui';
 
 export default combineReducers({
-  month,
+  ui,
 });

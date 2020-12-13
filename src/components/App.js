@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
-import { setMonth } from '../actions/month';
+import { setMonth } from '../actions/ui/month';
+import { getMonth } from '../selectors/ui/month';
 import AppHeader from './AppHeader';
 import MonthlyCalendar from './calendar/MonthlyCalendar';
-import ReminderModal from './reminders/ReminderModal';
+import ReminderContainer from './reminders/ReminderContainer';
 
 function setNavigationBarHeightCSSVariable() {
   const vh = window.innerHeight * 0.01;
@@ -29,8 +30,8 @@ class App extends Component {
       <div className="h-screen-nav-fix w-screen font-montserrat overflow-hidden bg-gray-50 text-gray-900">
         <div className="w-full h-full flex flex-col">
           <AppHeader />
-          {this.props.month && <MonthlyCalendar />}
-          <ReminderModal />
+          <MonthlyCalendar />
+          <ReminderContainer />
         </div>
       </div>
     );
@@ -40,7 +41,7 @@ class App extends Component {
 function mapStateToProps(state, props) {
   return {
     ...props,
-    month: state.month,
+    month: getMonth(state),
   };
 }
 

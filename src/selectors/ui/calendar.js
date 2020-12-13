@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
-import { getMonthlyCalendarGrid as getMonthlyCalendarGridHelper } from '../helpers/calendar';
-
-const getMonth = (state) => state.month;
+import { getMonthlyCalendarGrid as getMonthlyCalendarGridHelper } from '../../helpers/calendar';
+import { getMonth } from './month';
 
 export const getMonthlyCalendarGrid = createSelector([getMonth], (month) => {
   return month !== null

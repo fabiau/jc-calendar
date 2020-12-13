@@ -1,4 +1,4 @@
-export const SET_MONTH = 'SET_MONTH';
+export const SET_MONTH = 'UI/SET_MONTH';
 
 export function setMonth(month) {
   return {
