@@ -1,9 +1,10 @@
-import { DateTime } from 'luxon';
 import React, { Component } from 'react';
+import { DateTime } from 'luxon';
 import { connect } from 'react-redux';
 import { setMonth } from '../actions/month';
 import AppHeader from './AppHeader';
 import MonthlyCalendar from './calendar/MonthlyCalendar';
+import ReminderModal from './reminders/ReminderModal';
 
 function setNavigationBarHeightCSSVariable() {
   const vh = window.innerHeight * 0.01;
@@ -29,6 +30,7 @@ class App extends Component {
         <div className="w-full h-full flex flex-col">
           <AppHeader />
           {this.props.month && <MonthlyCalendar />}
+          <ReminderModal />
         </div>
       </div>
     );
