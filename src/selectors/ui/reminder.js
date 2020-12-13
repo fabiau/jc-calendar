@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon';
 import { createSelector } from 'reselect';
+import { millisToDateTimeStrings } from '../../helpers/calendar';
 
 export const getReminder = (state) => state.ui.reminder;
 
@@ -10,10 +11,10 @@ export const getFormattedReminder = createSelector(
 
     return {
       id: reminder.id,
-      description: reminder.description ?? '',
-      color: reminder.color, // TODO: Color.fromString
-      dateTime: DateTime.fromMillis(reminder.dateTime),
+      description: reminder.description,
+      color: reminder.color,
       cityName: reminder.cityName,
+      ...millisToDateTimeStrings(reminder.dateTime),
     };
   }
 );

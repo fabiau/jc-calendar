@@ -11,6 +11,13 @@ export function newReminder() {
   };
 }
 
+export function submitReminder(reminder) {
+  return {
+    type: SUBMIT_REMINDER,
+    payload: reminder,
+  };
+}
+
 export function openReminder(reminder) {
   return {
     type: OPEN_REMINDER,

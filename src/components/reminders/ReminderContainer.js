@@ -1,14 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { closeReminder } from '../../actions/ui/reminder';
+import { closeReminder, submitReminder } from '../../actions/ui/reminder';
 import { getFormattedReminder } from '../../selectors/ui/reminder';
 import ReminderModal from './ReminderModal';
 
-function ReminderContainer({ reminder, closeReminder }) {
+function ReminderContainer({ reminder, closeReminder, submitReminder }) {
   if (!reminder) return null;
 
-  return <ReminderModal reminder={reminder} onClose={closeReminder} />;
+  return (
+    <ReminderModal
+      reminder={reminder}
+      onClose={closeReminder}
+      onSubmit={submitReminder}
+    />
+  );
 }
 
 function mapStateToProps(state) {
@@ -18,7 +24,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ closeReminder }, dispatch);
+  return bindActionCreators({ closeReminder, submitReminder }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReminderContainer);

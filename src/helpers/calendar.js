@@ -103,3 +103,45 @@ export function getDisplayMonthAndYear(monthString) {
     month: 'long',
   });
 }
+
+/**
+ * Returns a date string representation of the provided DateTime.
+ * @param {DateTime} dateTime
+ */
+export function dateTimeToDateString(dateTime) {
+  return dateTime.toFormat(DATE_FORMAT, { locale: APP_LOCALE });
+}
+
+/**
+ * Returns a time string representation of the provided DateTime.
+ * @param {DateTime} date
+ */
+export function dateTimeToTimeString(dateTime) {
+  return dateTime.toLocaleString(DateTime.TIME_24_SIMPLE);
+}
+
+/**
+ * Returns an object with keys `date`, and `time` from milliseconds of a date.
+ * @param {number} dateMillis
+ */
+export function millisToDateTimeStrings(dateMillis) {
+  const dateTime = DateTime.fromMillis(dateMillis);
+
+  return {
+    date: dateTimeToDateString(dateTime),
+    time: dateTimeToTimeString(dateTime),
+  };
+}
+
+/**
+ * Returns total milliseconds from a date and time.
+ * @param {string} dateString
+ * @param {string} timeString
+ */
+export function dateTimeStringsToMillis(dateString, timeString) {
+  return DateTime.fromFormat(
+    `${dateString} ${timeString}`,
+    `${DATE_FORMAT} ${TIME_FORMAT}`,
+    { locale: APP_LOCALE }
+  ).toMillis();
+}

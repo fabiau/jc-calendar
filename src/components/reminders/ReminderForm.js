@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DateTime } from 'luxon';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import FormTextInput from '../shared/forms/FormTextInput';
@@ -20,6 +19,7 @@ import {
 import FormTimePicker from '../shared/forms/FormTimePicker';
 import ReminderColorPicker from './ReminderColorPicker';
 import { ALL_COLORS } from '../../helpers/colors';
+import { ReminderPropType } from '../shared/prop-types/reminder';
 
 const ReminderSchema = Yup.object().shape({
   description: Yup.string()
@@ -38,19 +38,26 @@ const ReminderSchema = Yup.object().shape({
 
 class ReminderForm extends Component {
   getInitialValues = () => {
-    const { description, color, dateTime, cityName } = this.props.reminder;
+    const { description, color, date, time, cityName } = this.props.reminder;
 
     return {
       description,
       color,
+      date,
+      time,
       city: cityName,
-      date: dateTime.toFormat(DATE_FORMAT),
-      time: dateTime.toFormat(TIME_FORMAT),
     };
   };
 
   handleSubmit = (values) => {
-    console.log('Submitting...', values);
+    this.props.onSubmit({
+      id: this.props.reminder.id,
+      description: values.description,
+      color: values.color,
+      cityName: values.city,
+      date: values.date,
+      time: values.time,
+    });
   };
 
   render() {
@@ -131,15 +138,8 @@ class ReminderForm extends Component {
 }
 
 ReminderForm.propTypes = {
-  reminder: PropTypes.shape({
-    id: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    color: PropTypes.oneOf(ALL_COLORS).isRequired, // TODO: Add colors definitions
-    dateTime: PropTypes.instanceOf(DateTime).isRequired,
-    cityName: PropTypes.string.isRequired,
-  }).isRequired,
-  // onClose: PropTypes.func.isRequired,
-  // onSubmit: PropTypes.func.isRequired,
+  reminder: ReminderPropType.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ReminderForm;

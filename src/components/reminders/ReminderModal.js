@@ -5,10 +5,11 @@ import ModalHeader from '../shared/modal/ModalHeader';
 import ModalResponsive from '../shared/modal/ModalResponsive';
 import ReminderForm from './ReminderForm';
 import { ALL_COLORS } from '../../helpers/colors';
+import { ReminderPropType } from '../shared/prop-types/reminder';
 
 class ReminderModal extends Component {
   render() {
-    const { reminder, onClose } = this.props;
+    const { reminder, onClose, onSubmit } = this.props;
     const isNew = !Boolean(reminder.id);
 
     return (
@@ -20,7 +21,7 @@ class ReminderModal extends Component {
             </h2>
           </ModalHeader>
 
-          <ReminderForm reminder={reminder} />
+          <ReminderForm reminder={reminder} onSubmit={onSubmit} />
         </div>
       </ModalResponsive>
     );
@@ -28,15 +29,9 @@ class ReminderModal extends Component {
 }
 
 ReminderModal.propTypes = {
-  reminder: PropTypes.shape({
-    id: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    color: PropTypes.oneOf(ALL_COLORS).isRequired, // TODO: Add colors definitions
-    dateTime: PropTypes.instanceOf(DateTime).isRequired,
-    cityName: PropTypes.string.isRequired,
-  }).isRequired,
+  reminder: ReminderPropType.isRequired,
   onClose: PropTypes.func.isRequired,
-  // onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ReminderModal;
