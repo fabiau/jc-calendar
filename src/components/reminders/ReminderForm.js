@@ -18,11 +18,16 @@ import {
   TIME_REGEX,
 } from '../../helpers/calendar';
 import FormTimePicker from '../shared/forms/FormTimePicker';
+import ReminderColorPicker from './ReminderColorPicker';
+import { ALL_COLORS } from '../../helpers/colors';
 
 const ReminderSchema = Yup.object().shape({
   description: Yup.string()
     .max(30, 'No more than 30 character, please.')
     .required('Please describe your reminder (max: 30 character).'),
+  color: Yup.string()
+    .oneOf(ALL_COLORS, 'Color is invalid.')
+    .required('Please inform a color.'),
   date: Yup.string()
     .matches(DATE_REGEX, `Date must be valid (${DATE_FORMAT}).`)
     .required('Please inform the day you want to get reminded.'),
@@ -33,10 +38,11 @@ const ReminderSchema = Yup.object().shape({
 
 class ReminderForm extends Component {
   getInitialValues = () => {
-    const { description, dateTime, cityName } = this.props.reminder;
+    const { description, color, dateTime, cityName } = this.props.reminder;
 
     return {
       description,
+      color,
       city: cityName,
       date: dateTime.toFormat(DATE_FORMAT),
       time: dateTime.toFormat(TIME_FORMAT),
@@ -59,13 +65,22 @@ class ReminderForm extends Component {
             <FormLabel htmlFor="description">
               What do you want to remember?
             </FormLabel>
-            <Field
-              id="description"
-              name="description"
-              component={FormTextInput}
-              placeholder="e.g.: Buy milk"
-            />
+            <div className="flex flex-row flex-wrap gap-2">
+              <Field
+                id="description"
+                name="description"
+                component={FormTextInput}
+                placeholder="e.g.: Buy milk"
+                className="flex-grow"
+              />
+              <Field
+                name="color"
+                as={ReminderColorPicker}
+                className="flex-shrink"
+              />
+            </div>
             <ErrorMessage component={FormErrorMessage} name="description" />
+            <ErrorMessage component={FormErrorMessage} name="color" />
           </FormFieldset>
 
           <FormFieldset>
@@ -119,7 +134,7 @@ ReminderForm.propTypes = {
   reminder: PropTypes.shape({
     id: PropTypes.string,
     description: PropTypes.string.isRequired,
-    color: PropTypes.oneOf(['']).isRequired, // TODO: Add colors definitions
+    color: PropTypes.oneOf(ALL_COLORS).isRequired, // TODO: Add colors definitions
     dateTime: PropTypes.instanceOf(DateTime).isRequired,
     cityName: PropTypes.string.isRequired,
   }).isRequired,

@@ -4,6 +4,7 @@ import { DateTime } from 'luxon';
 import ModalHeader from '../shared/modal/ModalHeader';
 import ModalResponsive from '../shared/modal/ModalResponsive';
 import ReminderForm from './ReminderForm';
+import { ALL_COLORS } from '../../helpers/colors';
 
 class ReminderModal extends Component {
   render() {
@@ -30,7 +31,7 @@ ReminderModal.propTypes = {
   reminder: PropTypes.shape({
     id: PropTypes.string,
     description: PropTypes.string.isRequired,
-    color: PropTypes.oneOf(['']).isRequired, // TODO: Add colors definitions
+    color: PropTypes.oneOf(ALL_COLORS).isRequired, // TODO: Add colors definitions
     dateTime: PropTypes.instanceOf(DateTime).isRequired,
     cityName: PropTypes.string.isRequired,
   }).isRequired,
