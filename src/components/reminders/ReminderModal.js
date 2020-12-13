@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 import ModalHeader from '../shared/modal/ModalHeader';
 import ModalResponsive from '../shared/modal/ModalResponsive';
+import ReminderForm from './ReminderForm';
 
 class ReminderModal extends Component {
   render() {
@@ -11,11 +12,15 @@ class ReminderModal extends Component {
 
     return (
       <ModalResponsive onClose={onClose}>
-        <ModalHeader onClose={onClose}>
-          <h2 className="uppercase font-medium text-xl">
-            {isNew ? 'New' : 'Edit'} Reminder
-          </h2>
-        </ModalHeader>
+        <div className="w-full h-full overflow-y-auto p-8 flex flex-col gap-8">
+          <ModalHeader onClose={onClose}>
+            <h2 className="uppercase font-medium text-xl">
+              {isNew ? 'New' : 'Edit'} Reminder
+            </h2>
+          </ModalHeader>
+
+          <ReminderForm reminder={reminder} />
+        </div>
       </ModalResponsive>
     );
   }
@@ -30,7 +35,7 @@ ReminderModal.propTypes = {
     cityName: PropTypes.string.isRequired,
   }).isRequired,
   onClose: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  // onSubmit: PropTypes.func.isRequired,
 };
 
 export default ReminderModal;

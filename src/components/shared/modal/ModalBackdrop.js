@@ -23,7 +23,7 @@ class ModalBackdrop extends Component {
       <div
         ref={this.ref}
         onClick={this.handleClick}
-        className="fixed top-0 left-0 h-full w-full bg-black z-20 bg-opacity-30"
+        className="fixed top-0 left-0 flex flex-col lg:py-28 h-full w-full bg-black z-20 bg-opacity-30"
       >
         {this.props.children}
       </div>
