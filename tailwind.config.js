@@ -1,12 +1,17 @@
 module.exports = {
   darkMode: 'class',
-  purge: [
-    'src/**/*.js',
-    'src/**/*.jsx',
-    'src/**/*.ts',
-    'src/**/*.tsx',
-    'public/**/*.html',
-  ],
+  purge: {
+    content: [
+      'src/**/*.js',
+      'src/**/*.jsx',
+      'src/**/*.ts',
+      'src/**/*.tsx',
+      'public/**/*.html',
+    ],
+    options: {
+      safelist: [/^bg-/, /^text-/],
+    },
+  },
   theme: {
     extend: {
       fontFamily: {
