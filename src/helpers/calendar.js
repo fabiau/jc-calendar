@@ -4,6 +4,10 @@ import { APP_LOCALE } from '../config/locale';
 export const DAYS_IN_A_WEEK = 7;
 export const MONTH_FORMAT = 'yyyy-MM';
 export const DATE_FORMAT = 'yyyy-MM-dd';
+export const TIME_FORMAT = 'hh:mm';
+
+export const DATE_REGEX = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+export const TIME_REGEX = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
 
 const SATURDAY_NUMBER = 7;
 const SUNDAY_NUMBER = 1;

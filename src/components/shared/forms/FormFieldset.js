@@ -6,7 +6,7 @@ function FormFieldset({ children }) {
 }
 
 FormFieldset.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default FormFieldset;
