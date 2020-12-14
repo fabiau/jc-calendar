@@ -10,7 +10,7 @@ function AppHeader({ month, newReminder }) {
     <div className="flex px-8 py-4 flex-row gap-4 flex-nowrap shadow-lg items-center">
       <div className="w-64">
         <button
-          onClick={newReminder}
+          onClick={() => newReminder()}
           type="button"
           className="uppercase flex flex-row flex-nowrap items-center gap-2 p-3 lg:px-4 lg:py-2 shadow rounded-full lg:rounded text-lg font-medium bg-white hover:bg-gray-200 text-indigo-700 hover:text-indigo-900 transition-colors duration-150"
         >

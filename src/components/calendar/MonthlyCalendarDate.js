@@ -5,13 +5,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePropType, DateReminderPropType } from '../shared/prop-types/date';
 import { getFormattedDateReminders } from '../../selectors/ui/calendar';
-import { editReminder } from '../../actions/ui/reminder';
+import { editReminder, newReminder } from '../../actions/ui/reminder';
 import MonthlyCalendarDateReminder from './MonthlyCalendarDateReminder';
 
-function MonthlyCalendarDate({ date, reminders, editReminder }) {
+function MonthlyCalendarDate({ date, reminders, editReminder, newReminder }) {
   return (
     <li
       key={date.key}
+      onClick={() => newReminder(date.key)}
       className={classNames(
         'h-auto px-3 py-2 bg-white text-lg overflow-hidden',
         {
@@ -28,7 +29,10 @@ function MonthlyCalendarDate({ date, reminders, editReminder }) {
           <MonthlyCalendarDateReminder
             key={reminder.id}
             reminder={reminder}
-            onClick={() => editReminder(reminder)}
+            onClick={(e) => {
+              e.stopPropagation();
+              editReminder(reminder);
+            }}
           />
         ))}
       </ol>
@@ -48,7 +52,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ editReminder }, dispatch);
+  return bindActionCreators({ editReminder, newReminder }, dispatch);
 }
 
 export default connect(

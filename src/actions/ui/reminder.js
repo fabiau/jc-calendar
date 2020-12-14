@@ -5,9 +5,10 @@ export const SUBMIT_REMINDER = 'UI/SUBMIT_REMINDER';
 export const OPEN_REMINDER = 'UI/OPEN_REMINDER';
 export const CLOSE_REMINDER = 'UI/CLOSE_REMINDER';
 
-export function newReminder() {
+export function newReminder(initialDate) {
   return {
     type: NEW_REMINDER,
+    payload: initialDate,
   };
 }
 
