@@ -1,7 +1,7 @@
 import { all, call, spawn } from 'redux-saga/effects';
 import { IS_PRODUCTION } from '../config/env';
 import { watchAndLog } from './logger';
-import { watchNewReminder, watchSubmitReminder } from './ui';
+import { watchEditReminder, watchNewReminder, watchSubmitReminder } from './ui';
 
 /**
  * Spawns given sagas, restarting them if they throw any uncaught error.
@@ -40,7 +40,7 @@ function* keepAlive(...sagas) {
 }
 
 export default function* rootSaga() {
-  const sagas = [watchNewReminder, watchSubmitReminder];
+  const sagas = [watchNewReminder, watchEditReminder, watchSubmitReminder];
   if (!IS_PRODUCTION) {
     sagas.unshift(watchAndLog);
   }

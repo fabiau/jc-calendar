@@ -25,6 +25,10 @@ export function* newReminder() {
   yield call(openReminder, reminder);
 }
 
+export function* editReminder(action) {
+  yield call(openReminder, action.payload);
+}
+
 export function* submitReminder(action) {
   const reminder = action.payload;
   let id = reminder.id;
@@ -53,6 +57,10 @@ export function* submitReminder(action) {
 
 export function* watchNewReminder() {
   yield takeEvery(reminderUIActions.NEW_REMINDER, newReminder);
+}
+
+export function* watchEditReminder() {
+  yield takeEvery(reminderUIActions.EDIT_REMINDER, editReminder);
 }
 
 export function* watchSubmitReminder() {

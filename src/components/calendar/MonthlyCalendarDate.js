@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePropType, DateReminderPropType } from '../shared/prop-types/date';
 import { getFormattedDateReminders } from '../../selectors/ui/calendar';
-import MonthlyCalendarDateReminder from './MontlyCalendarDateReminder';
+import { editReminder } from '../../actions/ui/reminder';
+import MonthlyCalendarDateReminder from './MonthlyCalendarDateReminder';
 
-function MonthlyCalendarDate({ date, reminders }) {
+function MonthlyCalendarDate({ date, reminders, editReminder }) {
   return (
     <li
       key={date.key}
@@ -23,7 +25,11 @@ function MonthlyCalendarDate({ date, reminders }) {
 
       <ol>
         {reminders.map((reminder) => (
-          <MonthlyCalendarDateReminder key={reminder.id} reminder={reminder} />
+          <MonthlyCalendarDateReminder
+            key={reminder.id}
+            reminder={reminder}
+            onClick={() => editReminder(reminder)}
+          />
         ))}
       </ol>
     </li>
@@ -41,4 +47,11 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(MonthlyCalendarDate);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ editReminder }, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MonthlyCalendarDate);

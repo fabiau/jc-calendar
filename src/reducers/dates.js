@@ -1,5 +1,19 @@
 import { SET_DATE_REMINDER } from '../actions/dates';
 
+function filterDateReminders(dates, reminderIdToExclude) {
+  return Object.values(dates).reduce((filtered, existing) => {
+    return {
+      ...filtered,
+      [existing.id]: {
+        ...existing,
+        reminders: existing.reminders.filter(
+          (reminderId) => reminderId !== reminderIdToExclude
+        ),
+      },
+    };
+  }, {});
+}
+
 export default function reminders(state = {}, action) {
   switch (action.type) {
     case SET_DATE_REMINDER:
@@ -9,10 +23,12 @@ export default function reminders(state = {}, action) {
       };
 
       return {
-        ...state,
+        ...filterDateReminders(state, action.payload.reminderId),
         [entry.id]: {
           ...entry,
-          reminders: [...entry.reminders, action.payload.reminderId],
+          reminders: Array.from(
+            new Set([...entry.reminders, action.payload.reminderId])
+          ),
         },
       };
 
