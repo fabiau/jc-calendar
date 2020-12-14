@@ -145,3 +145,10 @@ export function dateTimeStringsToMillis(dateString, timeString) {
     { locale: APP_LOCALE }
   ).toMillis();
 }
+
+export function getDisplayTimeFromMillis(dateMillis) {
+  return DateTime.fromMillis(dateMillis).toLocaleString({
+    ...DateTime.TIME_SIMPLE,
+    locale: APP_LOCALE,
+  });
+}
