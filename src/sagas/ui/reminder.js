@@ -1,11 +1,11 @@
 import { DateTime } from 'luxon';
 import { apply, call, put, takeEvery } from 'redux-saga/effects';
-import { setDateReminder } from '../actions/dates';
-import { setReminder } from '../actions/reminders';
-import * as reminderUIActions from '../actions/ui/reminder';
-import { dateTimeStringsToMillis, DATE_FORMAT } from '../helpers/calendar';
-import { DEFAULT_COLOR } from '../helpers/colors';
-import { generateUUID } from '../helpers/uuid';
+import { setDateReminder } from '../../actions/dates';
+import { setReminder } from '../../actions/reminders';
+import * as reminderUIActions from '../../actions/ui/reminder';
+import { dateTimeStringsToMillis, DATE_FORMAT } from '../../helpers/calendar';
+import { DEFAULT_COLOR } from '../../helpers/colors';
+import { generateUUID } from '../../helpers/uuid';
 
 export function* openReminder(reminder) {
   yield put(reminderUIActions.openReminder(reminder));

@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "autoprefixer": "^10.1.0",
+    "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "formik": "^2.2.6",
     "luxon": "^1.25.0",

@@ -1,7 +1,11 @@
 import { all, call, spawn } from 'redux-saga/effects';
 import { IS_PRODUCTION } from '../config/env';
 import { watchAndLog } from './logger';
-import { watchEditReminder, watchNewReminder, watchSubmitReminder } from './ui';
+import {
+  watchEditReminder,
+  watchNewReminder,
+  watchSubmitReminder,
+} from './ui/reminder';
 
 /**
  * Spawns given sagas, restarting them if they throw any uncaught error.

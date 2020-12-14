@@ -1,0 +1,1 @@
+export const FORECAST_API_KEY = process.env.JC_CALENDAR_FORECAST_API_KEY;
