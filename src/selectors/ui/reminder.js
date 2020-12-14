@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon';
 import { createSelector } from 'reselect';
 import { millisToDateTimeStrings } from '../../helpers/calendar';
 

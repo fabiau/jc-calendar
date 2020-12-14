@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { DateTime } from 'luxon';
 import ModalHeader from '../shared/modal/ModalHeader';
 import ModalResponsive from '../shared/modal/ModalResponsive';
 import ReminderForm from './ReminderForm';
-import { ALL_COLORS } from '../../helpers/colors';
 import { ReminderPropType } from '../shared/prop-types/reminder';
 
 class ReminderModal extends Component {
