@@ -46,6 +46,8 @@ class ReminderForecastContainer extends Component {
           this.props.formik
         )
       );
+    } else {
+      this.props.resetForecast();
     }
   }
 
@@ -69,10 +71,6 @@ class ReminderForecastContainer extends Component {
         this.props.resetForecast();
       }
     }
-  }
-
-  componentWillUnmount() {
-    this.props.resetForecast();
   }
 
   componentDidCatch(error, info) {
