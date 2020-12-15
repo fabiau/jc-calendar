@@ -14,7 +14,7 @@ function filterDateReminders(dates, reminderIdToExclude) {
   }, {});
 }
 
-export default function reminders(state = {}, action) {
+export default function dates(state = {}, action) {
   switch (action.type) {
     case SET_DATE_REMINDER:
       const entry = state[action.payload.date] ?? {
