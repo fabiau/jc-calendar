@@ -12,7 +12,7 @@ export const getFormattedReminder = createSelector(
       id: reminder.id,
       description: reminder.description,
       color: reminder.color,
-      cityName: reminder.cityName,
+      city: reminder.city,
       ...millisToDateTimeStrings(reminder.dateTime),
     };
   }

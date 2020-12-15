@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, suppressUseLayoutReduxWarning } from '../test-utils';
 import App from './App';
 
-test.skip('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('components::App', () => {
+  suppressUseLayoutReduxWarning();
+  test('renders without crashing', () => {
+    render(<App />);
+  });
 });

@@ -38,15 +38,20 @@ const ReminderSchema = Yup.object().shape({
 });
 
 class ReminderForm extends Component {
+  static propTypes = {
+    reminder: ReminderPropType.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   getInitialValues = () => {
-    const { description, color, date, time, cityName } = this.props.reminder;
+    const { description, color, date, time, city } = this.props.reminder;
 
     return {
       description,
       color,
       date,
       time,
-      city: cityName,
+      city: city,
     };
   };
 
@@ -55,7 +60,7 @@ class ReminderForm extends Component {
       id: this.props.reminder.id,
       description: values.description,
       color: values.color,
-      cityName: values.city,
+      city: values.city,
       date: values.date,
       time: values.time,
     });
@@ -139,10 +144,5 @@ class ReminderForm extends Component {
     );
   }
 }
-
-ReminderForm.propTypes = {
-  reminder: ReminderPropType.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default ReminderForm;

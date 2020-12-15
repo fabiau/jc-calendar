@@ -7,5 +7,5 @@ export const ReminderPropType = PropTypes.shape({
   color: PropTypes.oneOf(ALL_COLORS).isRequired,
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
-  cityName: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
 });

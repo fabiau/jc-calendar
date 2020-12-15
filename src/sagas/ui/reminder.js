@@ -33,7 +33,7 @@ export function* newReminder(action) {
     description: '',
     color: initialColor,
     dateTime: initialDateTime.toMillis(),
-    cityName: '',
+    city: '',
   };
 
   yield call(openReminder, reminder);
@@ -56,7 +56,7 @@ export function* submitReminder(action) {
     description: reminder.description,
     color: reminder.color,
     dateTime: dateTimeStringsToMillis(reminder.date, reminder.time),
-    cityName: reminder.cityName,
+    city: reminder.city,
   };
 
   const dateReminder = { date: reminder.date, reminderId: reminderToSet.id };

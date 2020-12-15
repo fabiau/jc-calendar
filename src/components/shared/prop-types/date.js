@@ -14,5 +14,5 @@ export const DateReminderPropType = PropTypes.shape({
   color: PropTypes.oneOf(ALL_COLORS).isRequired,
   dateTime: PropTypes.number.isRequired,
   displayTime: PropTypes.string.isRequired,
-  cityName: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
 });
