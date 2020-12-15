@@ -9,10 +9,10 @@ function ReminderColorPickerItem({ colorName, onClick }) {
       id="listbox-item-0"
       role="option"
       aria-selected={false}
-      className="cursor-pointer select-none relative py-2 pl-3 pr-9 transition duration-200 hover:bg-indigo-100"
+      className="cursor-pointer select-none relative p-2 transition duration-200 hover:bg-indigo-100"
       onClick={onClick}
     >
-      <div className="flex items-center">
+      <div className="flex items-center justify-center">
         <ReminderColorCircle colorName={colorName} />
       </div>
     </li>
