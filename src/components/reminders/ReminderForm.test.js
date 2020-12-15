@@ -1,10 +1,6 @@
-import { ErrorMessage, Form } from 'formik';
 import React from 'react';
 import { DEFAULT_COLOR } from '../../helpers/colors';
-import { mount, shallow } from '../../test-utils';
-import BaseButton from '../shared/buttons/BaseButton';
-import FormErrorMessage from '../shared/forms/FormErrorMessage';
-import FormFieldset from '../shared/forms/FormFieldset';
+import { mount } from '../../test-utils';
 import ReminderForm from './ReminderForm';
 
 describe('components::reminders::ReminderForm', () => {
