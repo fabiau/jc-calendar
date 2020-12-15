@@ -20,6 +20,7 @@ import FormTimePicker from '../shared/forms/FormTimePicker';
 import ReminderColorPicker from './ReminderColorPicker';
 import { ALL_COLORS } from '../../helpers/colors';
 import { ReminderPropType } from '../shared/prop-types/reminder';
+import ReminderForecastContainer from './forecast/ReminderForecastContainer';
 
 const ReminderSchema = Yup.object().shape({
   description: Yup.string()
@@ -121,6 +122,8 @@ class ReminderForm extends Component {
             />
             <ErrorMessage component={FormErrorMessage} name="city" />
           </FormFieldset>
+
+          <ReminderForecastContainer names={{ city: 'city', date: 'date' }} />
 
           <FormActions>
             <BaseButton

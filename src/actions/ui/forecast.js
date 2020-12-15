@@ -2,9 +2,10 @@ export const GET_FORECAST = 'UI/GET_FORECAST';
 export const SET_FORECAST = 'UI/SET_FORECAST';
 export const RESET_FORECAST = 'UI/RESET_FORECAST';
 
-export function getForecast() {
+export function getForecast({ city, date }) {
   return {
     type: GET_FORECAST,
+    payload: { city, date },
   };
 }
 

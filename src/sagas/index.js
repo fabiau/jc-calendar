@@ -1,6 +1,7 @@
 import { all, call, spawn } from 'redux-saga/effects';
 import { IS_PRODUCTION } from '../config/env';
 import { watchAndLog } from './logger';
+import { watchGetForecast } from './ui/forecast';
 import {
   watchEditReminder,
   watchNewReminder,
@@ -44,7 +45,12 @@ function* keepAlive(...sagas) {
 }
 
 export default function* rootSaga() {
-  const sagas = [watchNewReminder, watchEditReminder, watchSubmitReminder];
+  const sagas = [
+    watchNewReminder,
+    watchEditReminder,
+    watchSubmitReminder,
+    watchGetForecast,
+  ];
   if (!IS_PRODUCTION) {
     sagas.unshift(watchAndLog);
   }
