@@ -1,4 +1,4 @@
-# Would You Rather
+# JC Calendar
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/690f0adc-a331-45e4-a71e-e5c07a12c4b3/deploy-status)](https://app.netlify.com/sites/adoring-gates-ebbba7/deploys)
 
