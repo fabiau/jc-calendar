@@ -48,7 +48,7 @@ export function* submitReminder(action) {
   let id = reminder.id;
   if (!id) {
     // It is a new reminder, create an id for it since we don't have a backend.
-    id = generateUUID();
+    id = yield call(generateUUID);
   }
 
   const reminderToSet = {
