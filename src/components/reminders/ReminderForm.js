@@ -25,7 +25,7 @@ import ReminderForecastContainer from './forecast/ReminderForecastContainer';
 const ReminderSchema = Yup.object().shape({
   description: Yup.string()
     .max(30, 'No more than 30 character, please.')
-    .required('Please describe your reminder (max: 30 character).'),
+    .required('Please describe your reminder (max. 30 characters).'),
   color: Yup.string()
     .oneOf(ALL_COLORS, 'Color is invalid.')
     .required('Please inform a color.'),
