@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { DatePropType, DateReminderPropType } from '../shared/prop-types/date';
-import { getFormattedDateReminders } from '../../selectors/ui/calendar';
-import { editReminder, newReminder } from '../../actions/ui/reminder';
-import MonthlyCalendarDateReminder from './MonthlyCalendarDateReminder';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { DatePropType, DateReminderPropType } from "../shared/prop-types/date";
+import { getFormattedDateReminders } from "../../selectors/ui/calendar";
+import { editReminder, newReminder } from "../../actions/ui/reminder";
+import MonthlyCalendarDateReminder from "./MonthlyCalendarDateReminder";
 
 function MonthlyCalendarDate({ date, reminders, editReminder, newReminder }) {
   return (
@@ -14,11 +14,11 @@ function MonthlyCalendarDate({ date, reminders, editReminder, newReminder }) {
       key={date.key}
       onClick={() => newReminder(date.key)}
       className={classNames(
-        'h-auto px-3 py-2 bg-white text-lg overflow-hidden',
+        "h-auto px-3 py-2 bg-white text-lg overflow-hidden",
         {
-          'font-normal': !date.isWeekend,
-          'text-indigo-600 font-bold': date.isWeekend && !date.trailing,
-          'text-gray-400': date.trailing,
+          "font-normal": !date.isWeekend,
+          "text-indigo-600 font-bold": date.isWeekend && !date.trailing,
+          "text-gray-400": date.trailing,
         }
       )}
     >
